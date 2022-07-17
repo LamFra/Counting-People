@@ -18,7 +18,7 @@ at the exit door capable of detecting when a person leaves the shop.
 
 ## Architecture
 
-![architecture](https://github.com/LamFra/img/architecture.PNG)
+![architecture](https://github.com/LamFra/CountingPeople/blob/main/img/architecture.PNG?raw=true)
 
 The purpose of this project is to indicate the 
 number of people inside a shop in order to never exceed the maximum threshold allowed for each shop. 
