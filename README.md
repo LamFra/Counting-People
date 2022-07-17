@@ -65,7 +65,12 @@ database.
    ```  
     ```sh
    aws sqs create-queue --queue-name Sephora --endpoint-url=http://localhost:4566
-   ```  
+   ``` 
+- Placed on the path of the cloned folder:
+    ```sh
+   cd CountingPeople
+   ``` 
+   
 4. Create the DynamoDB table
    ```sh
    python3 settings/createTable.py
@@ -76,7 +81,7 @@ database.
    ``` 
 - Check the value of the entire database with populate tables
     ```sh
-   aws dynamodb scan --table-name Campania --endpoint-url=http://localhost:4566
+   aws dynamodb scan --table-name CentroCommercialeCampania --endpoint-url=http://localhost:4566
    ``` 
 6. Create the time-triggered Lambda function to count the total number of people within each shop
 - Create the role and attach the policy  
