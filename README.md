@@ -125,6 +125,8 @@ _Now every minute the function countFunc will be triggered._
    python3 IoTDevices.py
     ```
 2. Wait or invoke Lambda function manually
+
+3. Count the total number of people within each shop
    ```sh
    python3 getPeople.py
     ```
