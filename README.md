@@ -117,7 +117,7 @@ database.
    ```
 - Add the lambda function to the rule using the JSON file 
    ```sh
-  aws events put-targets --rule calculateNumPeople --targets file://target.json --endpoint-url=http://localhost:4566
+  aws events put-targets --rule calculateNumPeople --targets file://settings/target.json --endpoint-url=http://localhost:4566
    ``` 
 _Now every minute the function countFunc will be triggered._
 
@@ -137,6 +137,7 @@ _Now every minute the function countFunc will be triggered._
     ```
 The output should be more similar to this: 
 
+![output](https://github.com/LamFra/CountingPeople/blob/main/img/output.PNG?raw=true)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
