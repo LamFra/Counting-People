@@ -109,7 +109,7 @@ database.
 7. Set up a rule to trigger the Lambda function every minute
 - Create the rule and save the Arn
     ```sh
-  aws events put-rule --name calculateAvg --schedule-expression 'rate(1 minutes)' --endpoint-url=http://localhost:4566
+  aws events put-rule --name calculateNumPeople --schedule-expression 'rate(1 minutes)' --endpoint-url=http://localhost:4566
    ``` 
 - Add permissions to the rule 
     ```sh
