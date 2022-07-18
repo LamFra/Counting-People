@@ -5,7 +5,7 @@ import json
 import datetime 
 
 def lambda_handler(event, context):
-	key = "dWAGFb78ji-b29CmAe44TF"
+	key = "<key>"
 	url = "https://maker.ifttt.com/trigger/summary/with/key/"+key
 	
 	minutes = int('{:02d}'.format(datetime.datetime.now().minute()))
