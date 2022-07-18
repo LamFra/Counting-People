@@ -23,11 +23,12 @@ at the exit door capable of detecting when a person leaves the shop.
 The purpose of this project is to indicate the 
 number of people inside a shop in order to never exceed the maximum threshold allowed for each shop. 
 Each sensor (entry and exit) sends a message with the number of persons detected to the queue for its shop.
-Every minute, a time-triggered Servereless function calculates the total number of people for each main shop
+* Every minute, a time-triggered Servereless function calculates the total number of people for each main shop
 using the messages stored in the queues. For each queue, the function collects
 the number of people detected by the entry and exit sensors and calculates 
 the total number of those inside each shop, then uploads the result to a NoSQL 
 database.
+* Every hour, a message-triggered Servereless function calculates the average number of people in a shop and a message is sent to a specific queue. A message sent on the error queue triggers a Serverless function that sends an email notifying the daily report of a shop. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -65,6 +66,9 @@ database.
    ```  
     ```sh
    aws sqs create-queue --queue-name Sephora --endpoint-url=http://localhost:4566
+   ``` 
+   ```sh
+   aws sqs create-queue --queue-name Summary --endpoint-url=http://localhost:4566
    ``` 
 - Placed on the path of the cloned folder:
     ```sh
@@ -123,6 +127,28 @@ _Now every minute the function countFunc will be triggered._
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Setting IFTT
+1. Go to https://ifttt.com/
+2. Create to create a new applet.
+3. Click "If This", type "webhooks" and choose the Webhooks service
+4. Select "Receive a web request", write "summary" and create "trigger".
+5. Click Then That, type "email"
+6. Click Send me an email and choosing the topic and the body 
+7. Retrive your key and copy it into the summary.py
+8. Zip the file and create the Lambda function
+    ```sh
+   zip summary.zip  summary.py
+    ```
+    ```sh
+   aws lambda create-function --function-name summary --zip-file fileb://summary.zip --handler summary.lambda_handler --runtime python3.6 --role arn:aws:iam::000000000000:role/lambdarole --endpoint-url=http://localhost:4566
+    ```
+9. Create the event source mapping 
+    ```sh
+   aws lambda create-event-source-mapping --function-name summary --batch-size 5 --maximum-batching-window-in-seconds 60 --event-source-arn arn:aws:sqs:us-east-2:000000000000:Summary --endpoint-url=http://localhost:4566
+    ```
+    ```sh
+   aws sqs send-message --queue-url http://localhost:4566/000000000000/Summary --message-body '{"people1": "5","people2": "2"}' --endpoint-url=http://localhost:4566
+    ```
 
 ## Usage
 1. Simulate the devices
