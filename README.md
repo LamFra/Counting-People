@@ -149,6 +149,10 @@ _Now every minute the function countFunc will be triggered._
     ```sh
    aws sqs send-message --queue-url http://localhost:4566/000000000000/Summary --message-body '{"people1": "5","people2": "2"}' --endpoint-url=http://localhost:4566
     ```
+10. Check that an email is sent
+    ```sh
+   aws sqs send-message --queue-url http://localhost:4566/000000000000/Summary --message-body '{"people1": "5","people2": "2"}' --endpoint-url=http://localhost:4566
+    ```
 
 ## Usage
 1. Simulate the devices
