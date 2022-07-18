@@ -6,7 +6,7 @@ sqs = boto3.resource('sqs', endpoint_url='http://localhost:4566')
 
 shops = [('Carpisa', 5), ('Adidas', 8), ('Carrefour', 6), ('Sephora', 7), ('Zuiki', 8)]
 
-q = sqs.get_queue_by_name(QueueName="summary")
+q = sqs.get_queue_by_name(QueueName="Summary")
 
 for shop, max_capacity in shops:
 	queue = sqs.get_queue_by_name(QueueName=shop)
