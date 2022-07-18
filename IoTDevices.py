@@ -12,12 +12,12 @@ for shop, max_capacity in shops:
 	queue = sqs.get_queue_by_name(QueueName=shop)
 	measure_date = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 	
-	people = random.randint(0, 1000)
-	msg_body = '{"shop": "%s","measure_date": "%s","people": "%s","sensor_type": "%s"}' % (shop, measure_date, str(people), "in")
+	people1 = random.randint(0, 1000)
+	msg_body = '{"shop": "%s","measure_date": "%s","people": "%s","sensor_type": "%s"}' % (shop, measure_date, str(people1), "in")
 	print(msg_body)
 	queue.send_message(MessageBody=msg_body)
 	
-	people2 = random.randint(people - max_capacity, people)
+	people2 = random.randint(people1 - max_capacity, people1)
 	msg_body2 = '{"shop": "%s","measure_date": "%s","people": "%s","sensor_type": "%s"}' % (shop, measure_date, str(people2), "out")
 	print(msg_body2)
 	queue.send_message(MessageBody=msg_body2)
