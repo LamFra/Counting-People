@@ -129,7 +129,7 @@ _Now every minute the function countFunc will be triggered._
 
 ## Setting IFTT
 1. Go to https://ifttt.com/
-2. Create to create a new applet.
+2. Create a new applet.
 3. Click "If This", type "webhooks" and choose the Webhooks service
 4. Select "Receive a web request", write "summary" and create "trigger".
 5. Click Then That, type "email"
