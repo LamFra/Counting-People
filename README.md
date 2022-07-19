@@ -146,10 +146,6 @@ _Now every minute the function countFunc will be triggered._
     ```sh
    aws lambda create-event-source-mapping --function-name summary --batch-size 5 --maximum-batching-window-in-seconds 60 --event-source-arn arn:aws:sqs:us-east-2:000000000000:Summary --endpoint-url=http://localhost:4566
     ```
-10. Check that an email is sent
-     ```sh
-    aws sqs send-message --queue-url http://localhost:4566/000000000000/Summary --message-body '{"people1": "5","people2": "2"}' --endpoint-url=http://localhost:4566
-    ```
 
 ## Usage
 1. Simulate the devices
