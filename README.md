@@ -28,7 +28,7 @@ using the messages stored in the queues. For each queue, the function collects
 the number of people detected by the entry and exit sensors and calculates 
 the total number of those inside each shop, then uploads the result to a NoSQL 
 database.
-* Every hour, a message-triggered Servereless function calculates the average number of people in a shop and a message is sent to a specific queue. A message sent on the error queue triggers a Serverless function that sends an email notifying the daily report of a shop. 
+* Every hour, a message-triggered Servereless function calculates the average number of people in all of the shops within the shopping centre and a message is sent to a specific queue. A message sent on the error queue triggers a Serverless function that sends an email notifying the daily report. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -145,9 +145,6 @@ _Now every minute the function countFunc will be triggered._
 9. Create the event source mapping 
     ```sh
    aws lambda create-event-source-mapping --function-name summary --batch-size 5 --maximum-batching-window-in-seconds 60 --event-source-arn arn:aws:sqs:us-east-2:000000000000:Summary --endpoint-url=http://localhost:4566
-    ```
-    ```sh
-   aws sqs send-message --queue-url http://localhost:4566/000000000000/Summary --message-body '{"people1": "5","people2": "2"}' --endpoint-url=http://localhost:4566
     ```
 10. Check that an email is sent
      ```sh
