@@ -8,7 +8,9 @@ def lambda_handler(event, context):
 	key = "<key>"
 	url = "https://maker.ifttt.com/trigger/summary/with/key/"+key
 	
-	time = 2
+	
+	time = 2 #to test quickly run this instruction
+	#to test every hour time = 60 
 	minutes = int('{:02d}'.format(datetime.datetime.now().minute))
 	
 	if (minutes % time) == 0:
