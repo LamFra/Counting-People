@@ -103,10 +103,7 @@ database.
     ```sh
   aws lambda create-function --function-name countFunc --zip-file fileb://countFunc.zip --handler /settings/countFunc.lambda_handler --runtime python3.6 --role arn:aws:iam::000000000000:role/lambdarole --endpoint-url=http://localhost:4566
    ``` 
-- Test the function with a simulation of IoT Devices and invoke manually the function
-    ```sh
-  python3 IoTDevices.py
-   ``` 
+- Invoke manually the function
     ```sh
   aws lambda invoke --function-name countFunc --payload fileb://settings/shop.json out --endpoint-url=http://localhost:4566
    ``` 
@@ -122,6 +119,10 @@ database.
 - Add the lambda function to the rule using the JSON file 
    ```sh
   aws events put-targets --rule calculateNumPeople --targets file://settings/target.json --endpoint-url=http://localhost:4566
+   ``` 
+- Simulate the IoT devices
+   ```sh
+  python3 IoTDevices.py
    ``` 
 _Now every minute the function countFunc will be triggered._
 
@@ -146,6 +147,10 @@ _Now every minute the function countFunc will be triggered._
     ```sh
    aws lambda create-event-source-mapping --function-name summary --batch-size 5 --maximum-batching-window-in-seconds 60 --event-source-arn arn:aws:sqs:us-east-2:000000000000:Summary --endpoint-url=http://localhost:4566
     ```
+    
+The output should be more similar to this: 
+
+![email_output](https://github.com/LamFra/CountingPeople/blob/main/img/output_mail.PNG?raw=true)
 
 ## Usage
 1. Simulate the devices
