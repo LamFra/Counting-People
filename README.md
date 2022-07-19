@@ -28,7 +28,7 @@ using the messages stored in the queues. For each queue, the function collects
 the number of people detected by the entry and exit sensors and calculates 
 the total number of those inside each shop, then uploads the result to a NoSQL 
 database.
-* Every hour, a message-triggered Servereless function calculates the average number of people in all of the shops within the shopping centre and a message is sent to a specific queue. A message sent on the error queue triggers a Serverless function that sends an email notifying the daily report. 
+* Every hour, a message-triggered Servereless function calculates the average number of people in all of the shops within the shopping centre and a message is sent to a specific queue. A message sent on the queue Summary triggers a Serverless function that sends an email notifying the daily report. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
