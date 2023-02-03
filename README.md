@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-# CountingPeople application
+# Counting People application
 ## Introduction
 Counting People is a simulator that counts the total number of people 
 inside the main shops of the "_Campania_" _shopping centre_. The project is based on an IoT Cloud architecture in which several IoT sectors 
